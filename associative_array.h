@@ -40,6 +40,21 @@ int search_elements(hash *array, char *key);
 void *access_element(hash *array, char *key);
 void delete_element(hash *array, char *key);
 void destroy(hash *array);
+
+/*! \brief Function for loading valid data into hash list
+ *
+ *  This function take a valid char stream which contains properly
+ *  formatted data and loads it into a hash array. The format is as
+ *  follows: $key'\0'$(int16_t)data
+ *  please mind that $ simply indicates the value at key and data, not
+ *  to be included in the data stream
+ * 
+ *  \param data the valid char stream to be tranformed
+ *  \param length the length of the char stream
+ *  \param array  the hash to be loaded
+
+*/
+void construct_from_serial(char *data,int length,hash *array);
 hash init();
 
 #endif

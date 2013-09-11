@@ -21,29 +21,29 @@
 #include "associative_array.h"
 
 int main() {
-  int test_int = 3, *tmp;
 
+  //Gathers up the data from the steam. Cannot use gets or scanf because of NULL char's
+  FILE *myfile=fopen("debug","r");
+  char dataStream[1000];
+  int size=0;
+  do{
+    dataStream[size++]=fgetc(myfile);
+  }while(!feof(myfile));
+  int test_int = 3, *tmp;
   // initialize the hash
   hash test = init();
 
-  // assign the testing element with the value of test_int
-  assign_element(&test, "testing", (void*)&test_int, sizeof(test_int));
+
+  construct_from_serial(dataStream,size,&test);
 
   // retrieve the value of the testing element
-  tmp = (int*)access_element(&test, "testing");
-  printf("%d\n", *tmp);
+  tmp = (int*)access_element(&test, "Second");
+  if(tmp!=NULL)
+    printf("Second: %d\n", *tmp);
 
-  // delete the testing element
-  delete_element(&test, "testing");
-
-  // create a new element "test1" and assign the string "testing123"
-  assign_element(&test, "test1", (void*)"testing123", strlen("testing123"));
-  printf("%s\n", (char*)access_element(&test, "test1"));
-
-  // reassign "test1" to store test_int
-  assign_element(&test, "test1", (void*)&test_int, sizeof(test_int));
-  tmp = (int*)access_element(&test, "test1");
-  printf("%d\n", *tmp);
+    tmp = (int*)access_element(&test, "Forth");
+  if(tmp!=NULL)
+    printf("Forth: %d\n", *tmp);
 
   // delete the hash
   destroy(&test);

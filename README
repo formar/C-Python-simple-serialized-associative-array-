@@ -1,3 +1,7 @@
 A quick hash library written in C, usage is fairly simple, see main.c for an example.
 
 jtRIPper
+
+In addition a deserialzing function has been added to jtRIPpers library which takes data from the file stream and loads it into the list. As above main contains a demo on use.
+
+The python script loadfile.py shows how to create a dict and load a file with the proper serialzed form. While the demo is with a file, the real applications is over an IO stream. This was created to allow firmware and host to share large chunks of data which are transmitted through an virtual com port.

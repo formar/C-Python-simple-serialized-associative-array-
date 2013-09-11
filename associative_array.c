@@ -117,3 +117,13 @@ hash init() {
 
   return array;
 }
+
+void construct_from_serial(char *data,int length,hash *array){
+  char *start_of_split=data;
+  char *end_of_split=NULL;
+  while(length>(start_of_split-data)){
+    end_of_split=strchr(start_of_split,'\0')+1; //The +1 is to jump over the control char
+    assign_element(array,start_of_split,end_of_split, sizeof(int16_t));
+    start_of_split=end_of_split+sizeof(int16_t);
+  }
+}
